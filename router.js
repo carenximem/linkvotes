@@ -6,7 +6,19 @@ router.get('/', (req, res) => {
    res.render('../login');
 });
 
-// registros de elecciones
+router.post('/', (req, res) => {
+    const { cedula, contraseña } = req.body;
+    
+    if (cedula === '1068954428' && contraseña === '10302205') {
+        
+        res.json({ message: 'Inicio de sesión exitoso', nombre: 'Nombre de Usuario' });
+    } else {
+        res.json({ error: 'Inicio de sesión fallido' });
+    }
+});
+
+
+
 router.get('/elecciones', (req, res) => {
     conexion.query('SELECT * FROM elecciones', (error, results) => {
         if (error) {
@@ -113,6 +125,15 @@ router.get('/perfil', (req, res) => {
             }
         });
     });
+    router.get('/editperfil', (req, res) => {
+        conexion.query('SELECT id_candidato, nombre FROM candidatos', (error, results) => {
+            if (error) {
+                throw error;
+            } else {
+                res.render('editperfil', { results: results });
+            }
+        });
+    });
 router.get('/index', (req, res) => {
     conexion.query('SELECT candidatos.nombre, COUNT(votos.id_voto) as total_votos FROM votos JOIN candidatos ON votos.id_candidato = candidatos.id_candidato GROUP BY candidatos.nombre', (error, results) => {
         if (error) {
@@ -128,8 +149,8 @@ router.get('/index', (req, res) => {
 router.get('/createcandidatos', (req, res) => {
     res.render('createcandidatos');
 });
-router.get('/createperfil', (req, res) => {
-    res.render('createperfil');
+router.get('/proyecto', (req, res) => {
+    res.render('proyecto');
 });
 router.get('/createpropuestas', (req, res) => {
     res.render('createpropuestas');
@@ -144,7 +165,12 @@ router.get('/createpropuesta', (req, res) => {
 router.get('/editUsuarios', (req, res) => {
     res.render('editUsuarios');
 });
-
+router.get('/editpropuestas', (req, res) => {
+    res.render('editpropuestas');
+});
+router.get('/editperfil', (req, res) => {
+    res.render('editperfil');
+});
 router.get('/editCandidatos', (req, res) => {
     res.render('editCandidatos');
 });
@@ -174,5 +200,9 @@ const editElecciones = require('./controllers/editElecciones');
 router.post('/editElecciones', editElecciones.editElecciones);
 const editarusuarios = require('./controllers/editarusuarios');
 router.post('/editarusuarios', editarusuarios.editarusuarios);
+const editperfil = require('./controllers/editperfil');
+router.post('/editperfil', editperfil.editperfil);
 
+const editarPropuestas = require('./controllers/editarPropuestas');
+router.post('/editarPropuestas', editarPropuestas.editarPropuestas);
 module.exports = router;

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <title>propuestas</title>
+    <title>crear perfil</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -74,40 +74,37 @@
           </div>
         </div>
     </nav>  
- <div class="conatiner">
-    <a href="/createpropuestas" class="btn btn-outline-success mt-4">Nuevo</a>
+    <div class="container">
+        <br>
+        <h1>Editar perfil</h1>
+        <br>
+          <form action="/editperfil" method="post">  
+            <div class="mb-3">
+                <label for="nombre" class="form-label">candidato</label>
+                <select id="id_candidato" name="id_candidato" class="form-control" required>
+                <% results.forEach((candidato) => { %> 
+                <option value="<%= candidato.id_candidato %>"><%= candidato.nombre %></option>
+                <% }); %>
+                </select>
+                </div>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">estudios academicos</label>
+              <textarea id="estudios_academicos" name="estudios_academicos" class="form-control" placeholder="estudios_academicos" rows="3" required></textarea>
+          </div>
+            <div class="mb-3">
+                <label for="partido" class="form-label">logros</label>
+                <textarea id="logros_reconocimientos" name="logros_reconocimientos" class="form-control" placeholder="logros_reconocimientos" rows="3"></textarea>
+            </div>
 
-    <table class="table table-bordered table-striped text-center mt-3">
-        <thead>
-    
-        <tr class="bg-primary text-white">
-            <td scope="col">id</td>
-            <td scope="col">perfil</td>
-            <td scope="col">En Movilidad</td>
-            <td scope="col">En Seguridad</td>
-            <td scope="col">En Pobrezan</td>
-            <td scope="col">Accion</td>
-        </tr>
-    </thead>
-    <tbody>
-      
-          <% results.forEach((propuestas) => {%>
-            <tr>
-                <td><%= propuestas.id %></td>
-                <td><%= propuestas.nombre_candidato  %></td>
-                <td><%= propuestas.En_Movilidad %></td>
-                <td><%= propuestas.En_Seguridad %></td>
-                <td><%= propuestas.En_Pobreza %></td>
-                <td>
-                    <a href="/editpropuestas" class="btn btn-outline-success">Editar</a>
-                </td>
-            </tr>
-            
-            <% }); %>
-        
-    </tbody>
-    </table>
- </div>
+            <div class="mb-3">
+                <label for="fehcaregistro" class="form-label">antecedentes</label>
+                <textarea id="antecedentes" name="antecedentes" class="form-control" placeholder="antecedentes" rows="3"></textarea>
+            </div>
+         
+            <button type="submit" class="btn btn-primary">Registrar</button>
+            <a href="/perfil" class="btn btn-secondary">Cancelar</a>
+        </form>
+      </div> 
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>
