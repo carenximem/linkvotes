@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link rel="stylesheet" href="/disenio.css">
+    <title>Perfiles de Candidatos</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand">LinkVote</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index">Votaciones</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/perfiles">Perfiles</a>
+                    </li>   
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/p_votacion">Home</a>
+                    </li>  
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/propuestasCandidatos">Propuestas</a>
+                    </li>                                 
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 class="text">Perfiles de Candidatos</h1>
+
+    <div class="container">
+        <div class="candidato-container">
+            <% results.forEach((perfil) => { %>
+                <div class="candidato">
+                    <img src="<%= perfil.imagen_url %>" alt="Foto de <%= perfil.nombre %>">
+                    <h2><%= perfil.nombre %></h2>
+                    <h3>Estudios</h3>
+                    <p><%= perfil.estudios_academicos %></p>
+                    <h3>Logros</h3>
+                    <p><%= perfil.logros_reconocimientos %></p>
+                    <h3>Antecedentes</h3>
+                    <p><%= perfil.antecedentes %></p>
+                    <br>
+                    <form action="/votar" method="post" onsubmit="return confirmarVoto('<%= perfil.nombre %>')">
+                        <input type="hidden" name="id_candidato" value="<%= perfil.id_candidato %>">
+                        <button type="submit" class="btn-votar">Votar</button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const nombreUsuario = urlParams.get('nombre');
+
+        if (nombreUsuario) {
+            const bienvenidaDiv = document.getElementById('bienvenida');
+            bienvenidaDiv.textContent = `Bienvenido ${nombreUsuario}`;
+        } else {
+            console.error('No se ha recibido el nombre del usuario.');
+            const bienvenidaDiv = document.getElementById('bienvenida');
+            bienvenidaDiv.textContent = 'Bienvenido, usuario desconocido';
+        }
+
+        function confirmarVoto(nombre_candidato) {
+            return confirm(`¿Está seguro que quiere votar por ${nombre_candidato}?`);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

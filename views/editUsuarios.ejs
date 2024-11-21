@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <title>crear usuarios</title>
+  </head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" >LinkVote</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/index">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/elecciones" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Elecciones
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/elecciones">ver</a></li>
+              <li><a class="dropdown-item" href="/createElecciones">crear</a></li>
+              <li><a class="dropdown-item" href="/editElecciones">editar</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/elecciones" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Usuarios
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/usuarios">ver</a></li>
+              <li><a class="dropdown-item" href="/createUsuarios">crear</a></li>
+              <li><a class="dropdown-item" href="/editUsuarios">editar</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/elecciones" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Candidatos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/candidatos">ver</a></li>
+              <li><a class="dropdown-item" href="/createCandidatos">crear</a></li>
+              <li><a class="dropdown-item" href="/editCandidatos">editar</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/perfil" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             pefil candidato
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/perfil">ver</a></li>
+              <li><a class="dropdown-item" href="/createrpefil">crear</a></li>
+              <li><a class="dropdown-item" href="/editperfil">editar</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/propuestas" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             propuestas
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/propuestas">ver</a></li>
+              <li><a class="dropdown-item" href="/createpropuestas">crear</a></li>
+              <li><a class="dropdown-item" href="/editpropuestas">editar</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+</nav> 
+  <div class="container">
+    <br>
+    <h1>Editar usuarios</h1>
+    <br>
+      <form action="/editarusuarios" method="post">
+        <div class="mb-3">
+            <label for="id" class="form-label">Cedula</label>
+            <input type="number" id="id_usuario" name="id_usuario" class="form-control" placeholder="cedula" >
+
+        </div>   
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" >
+        </div>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">contraseña</label>
+          <input type="password" id="contraseña_hash" name="contraseña_hash" class="form-control" placeholder="contraseña" >
+      </div>
+        <div class="mb-3">
+            <label for="partido" class="form-label">email</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="email">
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">direccion</label>
+            <textarea id="direccion" name="direccion" class="form-control" placeholder="direccion" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="fehcaregistro" class="form-label">fecha registro</label>
+            <input type="date" id="fecha_registro" name="fecha_registro" class="form-control" placeholder="fecha_registro">
+        </div>
+      <div class="mb-3">
+        <label for="estado" class="form-label">estado</label> 
+          <select id="estado" name="estado" class="form-control"> 
+            <option value="activo">Activo</option> 
+            <option value="no activo">No Activo</option> 
+          </select> 
+      </div> 
+      <div class="mb-3"> 
+        <label for="nombre_rol" class="form-label">Rol</label>
+         <select id="nombre_rol" name="nombre_rol" class="form-control">
+           <option value="administrador">Administrador</option> 
+           <option value="votante">Votante</option>
+        </select>
+      </div>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+        <a href="/usuarios" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div> 
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
